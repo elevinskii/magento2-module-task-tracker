@@ -1,35 +1,8 @@
 <?php
 namespace IdealCode\TaskTracker\Controller\Task;
 
-class Remove extends \Magento\Framework\App\Action\Action
+class Remove extends \IdealCode\TaskTracker\Controller\Task
 {
-    /** @var \Magento\Framework\Data\Form\FormKey\Validator */
-    protected $_formKeyValidator;
-
-    /** @var \IdealCode\TaskTracker\Model\TaskFactory */
-    protected $_model;
-
-    /** @var \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory */
-    protected $_resourceModel;
-
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
-     * @param \IdealCode\TaskTracker\Model\TaskFactory $model
-     * @param \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModel
-     */
-    public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
-        \IdealCode\TaskTracker\Model\TaskFactory $model,
-        \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModel
-    ) {
-        $this->_formKeyValidator = $formKeyValidator;
-        $this->_model = $model;
-        $this->_resourceModel = $resourceModel;
-        parent::__construct($context);
-    }
-
     public function execute()
     {
         /** @var \Magento\Framework\App\Request\Http $request */
@@ -57,6 +30,6 @@ class Remove extends \Magento\Framework\App\Action\Action
             }
         }
 
-        $this->_redirect('*');
+        return $this->_redirect('*');
     }
 }

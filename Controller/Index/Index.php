@@ -3,23 +3,8 @@ namespace IdealCode\TaskTracker\Controller\Index;
 
 use \Magento\Framework\Controller\ResultFactory;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends \IdealCode\TaskTracker\Controller\Task
 {
-    /** @var \Magento\Framework\Data\Form\FormKey\Validator */
-    protected $_formKeyValidator;
-
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
-     */
-    public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
-    ) {
-        $this->_formKeyValidator = $formKeyValidator;
-        parent::__construct($context);
-    }
-
     public function execute()
     {
         /** @var \Magento\Framework\View\Result\Page $resultPage */
