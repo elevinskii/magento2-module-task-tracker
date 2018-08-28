@@ -1,0 +1,67 @@
+.task-list {
+    .actions {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    table {
+        &.loading {
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: .7;
+                background-color: @color-white;
+                background-image: @loader-icon__background-image;
+                background-position: @loader-icon__background-position;
+                background-repeat: no-repeat;
+            }
+        }
+
+        th {
+            white-space: nowrap;
+
+            a {
+                white-space: normal;
+            }
+
+            &:after {
+                margin-left: 3px;
+            }
+
+            &.asc {
+                &:after {
+                    content: '\2193';
+                }
+            }
+            &.desc {
+                &:after {
+                    content: '\2191';
+                }
+            }
+        }
+
+        th,
+        td {
+            padding: 11px 10px;
+            vertical-align: middle;
+        }
+
+        tbody {
+            tr {
+                border-top: 1px solid #ccc;
+
+                .actions {
+                    a {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<?php
+/**
+ * List of tasks
+ *
+ * @var \IdealCode\TaskTracker\Block\Task\ListTask $block
+ */
+?>
+<div class="task-list" data-mage-init='<?= $block->getJsLayout() ?>' data-bind="scope: 'taskList'">
+    <div class="actions">
+        <a href="<?= $block->getUrl('*/task/new') ?>" class="action primary"><?= __('Add new Task') ?></a>
+    </div>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>

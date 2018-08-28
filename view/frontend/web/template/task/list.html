@@ -1,0 +1,34 @@
+<table data-bind="css: isLoading ? 'loading' : ''" if="data.items.length">
+    <thead>
+        <tr each="fields">
+            <th data-bind="css: $parent.data.order == sort ? $parent.data.direction : ''">
+                <a href="#"
+                   data-bind="
+                       text: $t(label),
+                       click: function() {
+                           $parent.setOrder(sort, $parent.data.direction == 'asc' ? 'desc' : 'asc')
+                       }
+                   "
+                   if="id != 'actions'"
+                ></a>
+                <span data-bind="text: $t(label)" if="id == 'actions'"></span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody each="data.items">
+        <tr each="$parent.fields">
+            <td data-bind="text: $parent[id]" if="id != 'actions'"></td>
+            <td class="actions" if="id == 'actions'">
+                <a data-bind="text: $t('Edit Task'), attr: {href: $parent.url}"></a>
+                <a href="#"
+                   data-bind="text: $t('Remove Task'), click: function(){ $parents[1].removeAction($parent.id) }">
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div ifnot="data.items.length">
+    <translate args="'You have no tasks'" />
+</div>
