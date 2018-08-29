@@ -1,0 +1,105 @@
+<?php
+/**
+ * Edit or create new task
+ *
+ * @var \IdealCode\TaskTracker\Block\Task\Edit $block
+ */
+
+$task = $block->getTask();
+$statusCollection = $block->getStatusCollection();
+?>
+<div class="task-edit" data-mage-init='<?= $block->getJsLayout() ?>' data-bind="scope: 'taskEdit'">
+    <div class="actions">
+        <a href="<?= $block->getUrl('*') ?>" class="action primary"><?= __('Back') ?></a>
+    </div>
+    <form method="post"
+          action="<?= $block->getUrl('*/*/*') ?>"
+          data-bind="
+               css: isLoading ? 'loading' : '',
+               event: {submit: function(){ submitAction($element) }},
+               mageInit: {'validation': {}}
+          ">
+        <?php if($task->getId()): ?>
+            <input type="hidden" name="id" value="<?= $task->getId() ?>" />
+        <?php endif; ?>
+        <input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>" />
+        <input type="hidden" name="action" value="save" />
+        <div class="message"
+             data-bind="text: messageText, css: messageText ? (isSuccessMessage ? 'success' : 'error') : ''">
+        </div>
+        <fieldset class="fieldset">
+            <div class="field required">
+                <label class="label" for="name"><?= __('Name') ?></label>
+                <div class="control">
+                    <input id="name"
+                           type="text"
+                           name="name"
+                           value="<?= $task->getName() ?>"
+                           data-validate="{required: true}"
+                    />
+                </div>
+            </div>
+            <?php if($statusCollection->count() > 1): ?>
+                <div class="field required">
+                    <label class="label" for="status_id"><?= __('Status') ?></label>
+                    <div class="control">
+                        <select id="status_id" name="status_id">
+                            <?php /** @var \IdealCode\TaskTracker\Model\Status $status */ ?>
+                            <?php foreach($block->getStatusCollection() as $status): ?>
+                                <option
+                                    value="<?= $status->getId() ?>"
+                                    <?php if($status->getId() == $task->getStatusId()): ?> selected<?php endif; ?>
+                                ><?= $status->getName() ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="field">
+                <label class="label" for="description"><?= __('Description') ?></label>
+                <div class="control">
+                    <textarea id="description" name="description"><?= $task->getDescription() ?></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="assigned_to"><?= __('Assigned Person') ?></label>
+                <div class="control">
+                    <input id="assigned_to" type="text" name="assigned_to" value="<?= $task->getAssignedTo() ?>" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="start_time"><?= __('Start Time') ?></label>
+                <div class="control">
+                    <input id="start_time"
+                           type="text"
+                           name="start_time"
+                           value="<?= $task->getStartTime() ?>"
+                           autocomplete="off"
+                           data-bind="mageInit: {
+                               'IdealCode_TaskTracker/js/calendar': {'showsTime': true, 'dateFormat': 'yy-mm-dd'}
+                           }"
+                           data-validate="{'validate-date': {'dateFormat': 'YYYY-MM-DD hh:mm:ss'}}"
+                    />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="end_time"><?= __('End Time') ?></label>
+                <div class="control">
+                    <input id="end_time"
+                           type="text"
+                           name="end_time"
+                           value="<?= $task->getEndTime() ?>"
+                           autocomplete="off"
+                           data-bind="mageInit: {
+                               'IdealCode_TaskTracker/js/calendar': {'showsTime': true, 'dateFormat': 'yy-mm-dd'}
+                           }"
+                           data-validate="{'validate-date': {'dateFormat': 'YYYY-MM-DD hh:mm:ss'}}"
+                    />
+                </div>
+            </div>
+        </fieldset>
+        <button type="submit" class="action primary">
+            <?= __($task->getId() ? 'Save Task' : 'Create new Task') ?>
+        </button>
+    </form>
+</div>

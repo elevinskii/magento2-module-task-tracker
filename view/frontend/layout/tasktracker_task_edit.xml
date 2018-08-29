@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block name="task.edit" class="IdealCode\TaskTracker\Block\Task\Edit" template="task/edit.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="Magento_Ui/js/core/app" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="taskEdit" xsi:type="array">
+                                    <item name="component" xsi:type="string">IdealCode_TaskTracker/js/task/edit</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,28 +1,31 @@
-.task-list {
+.task-list,
+.task-edit {
     .actions {
         text-align: right;
         margin-bottom: 20px;
     }
 
-    table {
-        &.loading {
-            position: relative;
+    .loading {
+        position: relative;
 
-            &:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                opacity: .7;
-                background-color: @color-white;
-                background-image: @loader-icon__background-image;
-                background-position: @loader-icon__background-position;
-                background-repeat: no-repeat;
-            }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: .7;
+            background-color: @color-white;
+            background-image: @loader-icon__background-image;
+            background-position: @loader-icon__background-position;
+            background-repeat: no-repeat;
         }
+    }
+}
 
+.task-list {
+    table {
         th {
             white-space: nowrap;
 
