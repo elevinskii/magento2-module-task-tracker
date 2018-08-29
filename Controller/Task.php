@@ -7,26 +7,26 @@ abstract class Task extends \Magento\Framework\App\Action\Action
     protected $_formKeyValidator;
 
     /** @var \IdealCode\TaskTracker\Model\TaskFactory */
-    protected $_model;
+    protected $_modelFactory;
 
     /** @var \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory */
-    protected $_resourceModel;
+    protected $_resourceModelFactory;
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
-     * @param \IdealCode\TaskTracker\Model\TaskFactory $model
-     * @param \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModel
+     * @param \IdealCode\TaskTracker\Model\TaskFactory $modelFactory
+     * @param \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModelFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
-        \IdealCode\TaskTracker\Model\TaskFactory $model,
-        \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModel
+        \IdealCode\TaskTracker\Model\TaskFactory $modelFactory,
+        \IdealCode\TaskTracker\Model\ResourceModel\TaskFactory $resourceModelFactory
     ) {
         $this->_formKeyValidator = $formKeyValidator;
-        $this->_model = $model;
-        $this->_resourceModel = $resourceModel;
+        $this->_modelFactory = $modelFactory;
+        $this->_resourceModelFactory = $resourceModelFactory;
         parent::__construct($context);
     }
 }

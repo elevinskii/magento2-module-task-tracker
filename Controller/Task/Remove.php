@@ -12,10 +12,10 @@ class Remove extends \IdealCode\TaskTracker\Controller\Task
         if(($id > 0) && $this->_formKeyValidator->validate($request)) {
 
             /** @var \IdealCode\TaskTracker\Model\Task $model */
-            $model = $this->_model->create();
+            $model = $this->_modelFactory->create();
 
             /** @var \IdealCode\TaskTracker\Model\ResourceModel\Task $resourceModel */
-            $resourceModel = $this->_resourceModel->create();
+            $resourceModel = $this->_resourceModelFactory->create();
 
             $resourceModel->load($model, $id)->delete($model);
 

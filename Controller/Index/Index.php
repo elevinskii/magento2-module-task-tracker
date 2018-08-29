@@ -15,13 +15,19 @@ class Index extends \IdealCode\TaskTracker\Controller\Task
 
         if($request->isAjax() && $this->_formKeyValidator->validate($request)) {
 
-            /** @var \IdealCode\TaskTracker\Block\Task\ListTask $block */
-            $block = $resultPage->getLayout()->getBlock('task.list');
+            $blockName = 'task.list';
+            $layout = $resultPage->getLayout();
 
-            /** @var \Magento\Framework\Controller\Result\Json $resultJson */
-            $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+            if($layout->isBlock($blockName)) {
 
-            return $resultJson->setData($block->getJsLayoutData());
+                /** @var \IdealCode\TaskTracker\Block\Task\ListTask $block */
+                $block = $layout->getBlock('task.list');
+
+                /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+                $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+
+                return $resultJson->setData($block->getJsLayoutData());
+            }
         }
 
         return $resultPage;
