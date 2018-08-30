@@ -2,9 +2,6 @@
     "name": "idealcode/magento2-module-task-tracker",
     "description": "Simple task tracker for Magento 2",
     "type": "magento2-module",
-    "require": {
-        "magento/framework": "101.0.*"
-    },
     "autoload": {
         "files": [
             "registration.php"
